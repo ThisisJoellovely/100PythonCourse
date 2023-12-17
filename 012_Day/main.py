@@ -42,14 +42,10 @@ while (gameLogic == True):
         userInput_answerInt = int(userInput_answerString)
         if userInput_answerInt > randomNumber_variable:
             print("\nToo high!\n")
-            print("Guess again!\n")
             movesRemaining -= 1
-            continue
         elif userInput_answerInt < randomNumber_variable:
             print("\nToo low.\n")
-            print("Guess again.\n")
-            movesRemaining -= 1 
-            continue
+            movesRemaining -= 1    
         elif userInput_answerInt == randomNumber_variable:
             print(f"You got it! The answer was {randomNumber_variable}.")
             user_playAgain = input("Do you want to play again? type 'y' to play again or 'n' exit the program! ").lower()
