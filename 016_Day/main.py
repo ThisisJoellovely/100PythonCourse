@@ -1,3 +1,4 @@
+# Code coffee machine code
 MENU = {
     "espresso": {
         "ingredients": {
@@ -24,99 +25,68 @@ MENU = {
     }
 }
 
-report = {
-    "resources" : {
-        "Water": 300,
-        "Milk": 200,
-        "Coffee": 100,
-    },
-    "report" : {
-        "Money" : 0
-    }
+profit = 0
+resources = {
+    "water": 300,
+    "milk": 200,
+    "coffee": 100,
 }
 
 
-# Global Variables 
-coffee_State = 0
+def is_resource_sufficient(order_ingredients):
+    """Returns True when order can be made, False if ingredients are insufficient."""
+    for item in order_ingredients:
+        if order_ingredients[item] > resources[item]:
+            print(f"​Sorry there is not enough {item}.")
+            return False
+    return True
 
-### Returns a integer value that will be used to check what procedure to follow 
-def WelcomePrompt():
-    UserInput = input("What would you like? (espresso/latte/cappuccino):")
 
-    coffee_State = 0
-    if (UserInput == "espresso" or UserInput == "Espresso"):
-        coffee_State = 1
-        return coffee_State
-    elif (UserInput == "latte" or UserInput == "Latte"):
-        coffee_State = 2
-        return coffee_State
-    elif (UserInput == "cappuccino" or UserInput == "Cappuccino"):
-        coffee_State = 3
-        return coffee_State
-    elif (UserInput == "report" or UserInput == "Report"):
-        coffee_State = 4
-        return coffee_State
-    elif (UserInput == "off" or UserInput == "Off"):
-        coffee_State = -1
-        return coffee_State
+def process_coins():
+    """Returns the total calculated from coins inserted."""
+    print("Please insert coins.")
+    total = int(input("how many quarters?: ")) * 0.25
+    total += int(input("how many dimes?: ")) * 0.1
+    total += int(input("how many nickles?: ")) * 0.05
+    total += int(input("how many pennies?: ")) * 0.01
+    return total
+
+
+def is_transaction_successful(money_received, drink_cost):
+    """Return True when the payment is accepted, or False if money is insufficient."""
+    if money_received >= drink_cost:
+        change = round(money_received - drink_cost, 2)
+        print(f"Here is ${change} in change.")
+        global profit
+        profit += drink_cost
+        return True
     else:
-        return coffee_State
-    
-def PrintReport():
-    reportKey = report["resources"]
-    for key , value in reportKey:
-        if (key == "Water" or key == "Milk"):
-            print(f"{key}: {value}ml")
-        elif (key == "Coffee"):
-            print(f"{key}: {value}g")    
-    for key , value in report["report"]:
-        print(f"{key}: ${value}")
+        print("Sorry that's not enough money. Money refunded.")
+        return False
 
 
-def CheckResources(coffee_State):
+def make_coffee(drink_name, order_ingredients):
+    """Deduct the required ingredients from the resources."""
+    for item in order_ingredients:
+        resources[item] -= order_ingredients[item]
+    print(f"Here is your {drink_name} ☕️. Enjoy!")
 
-    if(coffee_State == 1):
-        UserInput = MENU["espresso"]
-    elif(coffee_State == 2):
-        UserInput = MENU["latte"]
-    elif(coffee_State == 3):
-        UserInput = MENU["cappuccino"]
+
+is_on = True
+
+while is_on:
+    choice = input("​What would you like? (espresso/latte/cappuccino): ")
+    if choice == "off":
+        is_on = False
+    elif choice == "report":
+        print(f"Water: {resources['water']}ml")
+        print(f"Milk: {resources['milk']}ml")
+        print(f"Coffee: {resources['coffee']}g")
+        print(f"Money: ${profit}")
     else:
-        print("Invalid Response")
-        return -1
-
-    UserInput_Ingredients = UserInput["ingredients"]
-
-    for key , value in report["resources"]:
-        if(UserInput_Ingredients[key] < value):
-            continue
-        else:
-            print(f"Sorry there is not enough {key}")
-            return -1
-        
-#def ProcessCoins():
-
-    
-#What the coffee machine will do based on the inputs given from the user
-while (coffee_State != -1):
-    coffee_State = WelcomePrompt()
-    if(coffee_State == 0):
-        print("Wrong input, please try again!")
-        continue
-    elif(coffee_State == 4):
-        PrintReport()
-        continue
-    elif(coffee_State == 1 or coffee_State == 2 or coffee_State == 3):
-       if (CheckResources(coffee_State) != -1):
-           continue
-       else: 
-           continue
-    continue
-
-print("Closed due to maintenance. Sorry for the inconvenience")
-
-
-
-
-
+        drink = MENU[choice]
+        if is_resource_sufficient(drink["ingredients"]):
+            payment = process_coins()
+            if is_transaction_successful(payment, drink["cost"]):
+                make_coffee(choice, drink["ingredients"])
 
