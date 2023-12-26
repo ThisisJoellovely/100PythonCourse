@@ -1,0 +1,1 @@
+# Day 14 was introduction to debugging and this was done using coding exercises. 
