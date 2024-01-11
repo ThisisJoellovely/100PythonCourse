@@ -39,8 +39,6 @@ def get_names(filename):
                 break
             names.append(content)
             
-
-
 get_names(NAMES_PATH)
 for i in range(len(names)):
     current_name = names[i].replace('\n','')
