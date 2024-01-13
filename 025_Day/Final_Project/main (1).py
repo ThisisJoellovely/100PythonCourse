@@ -69,31 +69,14 @@ while count_out_of_50 != 50:
     count_out_of_50 = state_validiation(user_input=user_input, pandas_file=data, count=count_out_of_50)
 
 #Creating file called results.csv that has states not guessed by the user
-results = []
-for i in range(len(data["T/F"])):
-    if(data["T/F"][i] == True):
-        continue
-    elif(data["T/F"][i] == False):
-        results.append(data["state"][i])
-        continue
+results = [variable for variable in data["T/F"] if data["T/F"][variable] == False]
+#for i in range(len(data["T/F"])):
+#    if(data["T/F"][i] == True):
+#        continue
+#    elif(data["T/F"][i] == False):
+#        results.append(data["state"][i])
+#        continue
 results = pandas.DataFrame(results)
 results.to_csv("results.csv")
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 my_screen.exitonclick()
