@@ -37,14 +37,5 @@ calculate_button = tkinter.Button(text="Calulate",command=conversion_method)
 calculate_button.grid(column=1, row=2)
 
 
-
-
-
-
-
-
-
-
-
 main_screen.mainloop()
 
