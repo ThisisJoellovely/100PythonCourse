@@ -6,7 +6,23 @@ import json
 
 #CONSTANTS
 IMAGE_FILE_PATH = "/Users/lovely/Documents/100_DaysOfProgramming/029_Day/logo.png"
-
+# ---------------------------- SEARCH GENERATOR ------------------------------- #
+def search_genereator():
+    website_name = website_textbox.get()
+    try:
+        with open("data.json", "r") as file:
+            # read json file 
+            data = json.load(file)
+            user_email = data[website_name]["email"]
+            password = data[website_name]["password"]
+            messagebox.showinfo(title=website_name, message=f"Email/Username: {user_email}\n Password: {password}\n")
+    except KeyError as error_message:
+        messagebox.showinfo(title="Ooops", message=f"Sorry there was a problem {error_message}")
+    except FileNotFoundError as error_message:
+        messagebox.showinfo(title="Ooops", message=f"Sorry there was a problem {error_message}")
+        with open("data.json", "w") as file:
+            return 0
+    
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def password_generator(): 
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -85,9 +101,9 @@ password_label = Label(text="Password:")
 password_label.grid(column=0, row=3)
 
 # Implementation of website_textbox 
-website_textbox = Entry(width=38)
+website_textbox = Entry(width=21)
 website_textbox.focus()
-website_textbox.grid(column=1, columnspan=2, row=1)
+website_textbox.grid(column=1, row=1)
 
 # Implementation of username_textbox 
 username_textbox = Entry(width=38)
@@ -99,8 +115,12 @@ password_textbox = Entry(width=21)
 password_textbox.grid(column=1, row=3)
 
 # Implementation of 'generate password' button
-generate_password_button = Button(text="Generate Pasword", command=password_generator)
+generate_password_button = Button(text="Generate Pasword", command=password_generator,width=12)
 generate_password_button.grid(column=2, row=3)
+
+# Implementation of 'Search' button
+search_button = Button(text="Search Result", width=12, command=search_genereator)
+search_button.grid(column=2, row=1)
 
 # Implementation of 'add' button
 add_button = Button(text="add", width= 36, command=save)
