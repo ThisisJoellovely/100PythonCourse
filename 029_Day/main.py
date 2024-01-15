@@ -94,14 +94,4 @@ generate_password_button.grid(column=2, row=3)
 add_button = Button(text="add", width= 36, command=save)
 add_button.grid(column=1, columnspan=2,  row=4)
 
-
-
-
-
-
-
-
-
-
-
 main_screen.mainloop() 
