@@ -7,3 +7,4 @@ Learned So Far
 4. Critical Thinking and Design
 5. List and dictionary comprehension
 6. Exception handling
+7. Relational Database and JSON DOC
