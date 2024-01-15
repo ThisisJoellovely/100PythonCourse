@@ -33,6 +33,7 @@ def save():
     website_string = website_textbox.get()
     username_string = username_textbox.get()
     password_string = password_textbox.get()
+    website = "example.com"
     new_data = { 
         website: {
         "email": username_string,
