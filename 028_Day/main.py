@@ -9,7 +9,7 @@ FONT_NAME = "Courier"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
-TOMATO_FILE_PATH = "/Users/lovely/Documents/100_DaysOfProgramming/028_Day/Final_Project/tomato.png"
+TOMATO_FILE_PATH = "/Users/lovely/Documents/100_DaysOfProgramming/028_Day/tomato.png"
 CHECK_MARK = "✓"
 # ---------------------------- GLOBAL ------------------------------- #
 reps = 0
