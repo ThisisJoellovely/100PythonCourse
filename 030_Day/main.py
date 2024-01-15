@@ -33,17 +33,12 @@ def save():
     website_string = website_textbox.get()
     username_string = username_textbox.get()
     password_string = password_textbox.get()
-    website = "example.com"
     new_data = { 
-        website: {
+        website_string: {
         "email": username_string,
         "password": password_string,
     }}
-
-    
-    
-
-    if len(website_string) or len(username_string) or len(password_string) == 0:
+    if len(website_string) == 0 or len(password_string) == 0:
         messagebox.showinfo(title="Oops", message="Please don't leave any of the boxes empty")
     else:
         try:
