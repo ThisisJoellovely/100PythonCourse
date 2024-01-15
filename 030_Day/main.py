@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 #CONSTANTS
 IMAGE_FILE_PATH = "/Users/lovely/Documents/100_DaysOfProgramming/029_Day/logo.png"
@@ -32,20 +33,36 @@ def save():
     website_string = website_textbox.get()
     username_string = username_textbox.get()
     password_string = password_textbox.get()
+    new_data = { 
+        website: {
+        "email": username_string,
+        "password": password_string,
+    }}
+
+    
+    
 
     if len(website_string) or len(username_string) or len(password_string) == 0:
         messagebox.showinfo(title="Oops", message="Please don't leave any of the boxes empty")
     else:
-        save_logic = messagebox.askokcancel(title="User/Pass Confirmation", message=f"The entry \n Website Name: {website_string}\nEmail/Username: {username_string}\n Password: {password_string}\n Is going be saved is this okay? " )
-        
-        if save_logic == True:
-            with open("data.txt", "w") as file:
-                file.write(f"{website_string} | {username_string} | {password_string}\n")
-
-        website_textbox.delete(0,END)
-        username_textbox.delete(0,END)
-        password_textbox.delete(0,END)
-        return 0
+        try:
+            with open("data.json", "r") as file:
+                #Reading JSON data file 
+                data = json.load(file)
+                #Updating with new data from what we have created
+                data.update(new_data)
+        except FileNotFoundError:
+            with open("data.json", "w") as file:
+                json.dump(new_data, file, indent=4)
+        else:
+            json.update(new_data)
+            with open("data.json","w") as file:
+                json.dump(data, file, indent=4)
+        finally:  
+            website_textbox.delete(0,END)
+            username_textbox.delete(0,END)
+            password_textbox.delete(0,END)
+            return 0
 # ---------------------------- UI SETUP ------------------------------- #
 
 # Implemenration of the screen class
