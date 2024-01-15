@@ -4,4 +4,6 @@ Learned So Far
 1. Python Data Structures
 2. Python Modules: Turtle, Pandas, Tkinter
 3. OOP - Object Orinated Programming
-4. Critical Thinking and Design 
+4. Critical Thinking and Design
+5. List and dictionary comprehension
+6. Exception handling
