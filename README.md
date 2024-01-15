@@ -1,1 +1,7 @@
 Angela Yu's 100 Days of python Course
+
+Learned So Far 
+1. Python Data Structures
+2. Python Modules: Turtle, Pandas, Tkinter
+3. OOP - Object Orinated Programming
+4. Critical Thinking and Design 
