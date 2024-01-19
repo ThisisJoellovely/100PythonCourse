@@ -6,10 +6,10 @@ from email.mime.text import MIMEText
 
 #CONSTANTS
 QUOTES_FILE_PATH = "/Users/lovely/Documents/100_DaysOfProgramming/032_Day/Quotes.csv"
-MY_EMAIL = "Joellovely0717@gmail.com"
-PASSWORD = "bxtyunxnkxxnvzte"
+MY_EMAIL = "thisisfortesting@gmail.com"
+PASSWORD = "arbituary password"
 
-MY_OTHER_EMAIL = "Joellovely0717@gmail.com"
+MY_OTHER_EMAIL = "thisisfortesting@gmail.com"
 
 
 
