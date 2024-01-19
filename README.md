@@ -9,4 +9,5 @@ Learned So Far
 6. Exception handling
 7. Relational Database and JSON DOC
 8. Debugging
-9. SMTP CONNECTION USING GMAIL 
+9. smtp connection using gmail
+10. request module in python and basic API commands
