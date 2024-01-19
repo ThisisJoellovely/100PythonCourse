@@ -3,10 +3,10 @@ import smtplib
 from datetime import datetime
 
 
-MY_LAT = -51.4671 # Your latitude
-MY_LONG = -160.2004 # Your longitude
-MY_EMAIL = "Joellovely0717@gmail.com"
-MY_PASSWORD = "mnkhacubvlwwnpwv"
+MY_LAT = 0# Your latitude
+MY_LONG = 0 # Your longitude
+MY_EMAIL = "thisisfortesting@gmail.com"
+MY_PASSWORD = "arbitrary password"
 
 PARAMETERS = {
     "lat": MY_LAT,
@@ -47,10 +47,7 @@ with requests.get(url="http://api.open-notify.org/iss-now.json") as response_sta
     elif (check((iss_latitude,iss_longitude)) == False):
         print("The ISS is not near the current location you are positioned")
 
-#If the ISS is close to my current position
-# and it is currently dark
-# Then send me an email to tell me to look up.
-# BONUS: run the code every 60 seconds.
+
 
 
 
