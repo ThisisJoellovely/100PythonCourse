@@ -10,5 +10,5 @@ Learned So Far
 7. Relational Database and JSON DOC
 8. Debugging
 9. SMTP connection using gmail
-10. request module in python and basic API commands
-11. Eviromental Variables and Open_weather and twillo API 
+10. Request module in python and basic API commands
+11. Environmental Variables and Open_weather and twillo API 
