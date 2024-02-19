@@ -11,4 +11,6 @@ Learned So Far
 8. Debugging
 9. SMTP connection using gmail
 10. Request module in python and basic API commands
-11. Environmental Variables and Open_weather and twillo API 
+11. Environmental Variables and Open_weather, twillo API, and Google API
+12. HTTPS GET , POST , DELETE and PULL requests
+
