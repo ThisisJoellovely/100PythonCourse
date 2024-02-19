@@ -13,4 +13,5 @@ Learned So Far
 10. Request module in python and basic API commands
 11. Environmental Variables and Open_weather, twillo API, and Google API
 12. HTTPS GET , POST , DELETE and PULL requests
-
+13. HTML Tags, Breakline Tags, Boiler Plates, Nesting
+14. CSS
