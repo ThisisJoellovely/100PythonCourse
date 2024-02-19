@@ -1,4 +1,4 @@
-Angela Yu's 100 Days of python Course
+A Working description of what I've learned from the Angela Yu's 100 Days Challenge Of Python Course
 
 Learned So Far 
 1. Python Data Structures
