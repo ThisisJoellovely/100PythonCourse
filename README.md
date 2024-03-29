@@ -15,4 +15,5 @@ Learned So Far
 12. HTTPS GET , POST , DELETE and PULL requests
 13. HTML Tags, Breakline Tags, Boiler Plates, Nesting
 14. CSS (External, Internal, Inline) Links and CSS Selector
-    
+15. Selenium module with a variety of projects 
+16. Backend Website managment with FLASK Framework 
