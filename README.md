@@ -17,4 +17,5 @@ Learned So Far
 14. CSS (External, Internal, Inline) Links and CSS Selector
 15. Selenium module with a variety of projects 
 16. Backend Website managment with FLASK Framework
-17. Python Decorators and wrapper functions 
+17. Python Decorators and wrapper functions
+18. Jinja Sytax and url get request with FLASK framework 
