@@ -3,7 +3,10 @@ from dotenv import load_dotenv
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Length, Email
+from flask_bootstrap import Bootstrap5
+
+
 load_dotenv('/Users/lovely/Documents/Udemy/SECRET_API_KEYS/061_Day/.env')
 
 # CONSTANT VARIABLES
@@ -23,13 +26,14 @@ This will install the packages from requirements.txt for this project.
 '''
 
 class LoginCredentials(FlaskForm):
-        Email = StringField(label='Email', validators=[DataRequired()])
-        Password = PasswordField(label='Password', validators=[DataRequired()])
+        Email = StringField(label='Email', validators=[DataRequired(), Email()])
+        Password = PasswordField(label='Password', validators=[DataRequired(), Length(1,8)])
         Submit = SubmitField(label='Log In')
 
 
 
 app = Flask(__name__)
+bootstrap = Bootstrap5(app)
 app.secret_key = API_SECRET_KEY
 
 
@@ -40,7 +44,14 @@ def home():
 @app.route("/login", methods=["GET" , "POST"])
 def login():
     login_form = LoginCredentials()
-    login_form.validate_on_submit() 
+    if login_form.validate_on_submit():
+         Email_data = login_form.Email.data 
+         Password_data = login_form.Password.data
+         if Email_data == "admin@email.com" and Password_data == "12345678":
+            return render_template('success.html')
+         else:
+              return render_template('denied.html')
+    
     return render_template('login.html', form=login_form)
 
 

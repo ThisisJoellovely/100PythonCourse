@@ -1,28 +1,9 @@
-<!DOCTYPE HTML>
-
-<html>
-	<head>
-		<title>Login</title>
-	</head>
-	<body>
-		<div class="container">
-			<h1>Login</h1>
-			<form method="POST" action="{{ url_for('login') }}">
-				{{ form.csrf_token }}
-				<p>
-					{{ form.Email.label }} {{ form.Email(size=30) }}
-					{% for error in form.Email.errors %}
-					<span style="color:red">{{ error }}</span>
-					{% endfor %}
-				</p>
-				<p>
-					{{ form.Password.label }} {{ form.Password(size=30) }}
-					{% for error in form.Password.errors %}
-					<span style="color:red">{{ error }}</span>
-					{% endfor %}
-				</p>
-				{{ form.Submit }}
-			</form>
-		</div>
-	</body>
-</html>
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Login{% endblock %}
+{% block content %}
+	<div class="contaier">
+		<h1>Login</h1>
+		{{ render_form(form)}}
+	</div>
+{% endblock %}
