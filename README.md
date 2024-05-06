@@ -19,3 +19,4 @@ Learned So Far
 16. Backend Website managment with FLASK Framework
 17. Python Decorators and wrapper functions
 18. Jinja Sytax and url get request with FLASK framework 
+19. Bootstrap Basics with Bootstrap FLASK development 
