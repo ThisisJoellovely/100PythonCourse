@@ -12,7 +12,7 @@ from sqlalchemy import Integer, String, Float
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///new-books-collection.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////Users/lovely/Documents/Udemy/100_DaysOfProgramming/063_Day/SQLlite_Demo/new-books-collection.db"
 
 class Base(DeclarativeBase):
     pass
