@@ -1,3 +1,4 @@
+{% from 'bootstrap5/form.html' import render_form %}
 {% extends 'base.html' %}
 
 {% block title %}Add Movie{% endblock %}
@@ -5,5 +6,8 @@
 {% block content %}
 <div class="content">
     <h1 class="heading">Add a Movie</h1>
+
+    {{ render_form(form, novalidate=True) }}
+    
 </div>
 {% endblock %}

@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
@@ -21,6 +23,9 @@ pip3 install -r requirements.txt
 
 This will install the packages from requirements.txt for this project.
 '''
+load_dotenv("/Users/lovely/Documents/Udemy/SECRET_API_KEYS/064_Day/.env")
+TOP_10_MOVIES_API_KEY = os.getenv("TOP_10_MOVIES_API_KEY")
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -28,7 +33,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://///Users/lovely/Documents/Udem
 
 Bootstrap5(app)
 
-# CREATE DB
 class Base(DeclarativeBase):
     pass
 
@@ -46,12 +50,6 @@ class Movie(db.Model):
     review : Mapped[str] = mapped_column(String, nullable=False)
     img_url : Mapped[str] = mapped_column(String, nullable=False, unique=True)
 
-class EditForm(FlaskForm):
-    """Creating Easy to use form uisng WTF Moudle"""
-    edit_rating = DecimalField('ex: 10.0',places=2)
-    edit_review = StringField()
-    edit_submit = SubmitField('Done') 
-
 with app.app_context():
     """This creates the desired Movies table listed above """
     db.create_all()
@@ -60,6 +58,19 @@ def top_10_list():
     movies = db.session.execute(select(Movie).order_by(Movie.id)).scalars()
     return movies
     
+
+class EditForm(FlaskForm):
+    """Creating Easy to use form uisng WTF Moudle"""
+    edit_rating = DecimalField('ex: 10.0',places=2)
+    edit_review = StringField()
+    edit_submit = SubmitField('Done') 
+
+class AddMovieTitle(FlaskForm):
+    """Creating Easy to use form using WTF Module"""
+    add_movie_title = StringField("Movie Title", validators=[DataRequired()])
+    add_movie_title_submiti = SubmitField('Add Movie')
+
+
 
 
 # with app.app_context(): 
@@ -105,6 +116,23 @@ def edit():
         db.session.commit()
         return redirect(url_for('home'))
     return render_template("edit.html",data=movie,form=form)
+
+@app.route("/delete", methods=["GET"])
+def delete():
+    movie_id = request.args.get("id")
+    movie = db.get_or_404(Movie, movie_id)
+    db.session.delete(movie)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    form = AddMovieTitle()
+    return render_template("add.html", form=form)        
+
+
+
+
 
 
 if __name__ == '__main__':
