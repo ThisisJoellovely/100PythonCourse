@@ -180,9 +180,7 @@ def find_movie():
             movieTMDB_url  = f"{MOVIE_DB_INFO_URL}/{movieTMDB}"
             movieTMDB_movie = top_movies_database.makeRequestFindCall(url=movieTMDB_url,the_movies_database_parameter=the_movies_database_parameter)
             return redirect(url_for("edit", id=movieTMDB_movie.id))
-            
-
-
+        
 
 
 if __name__ == '__main__':
