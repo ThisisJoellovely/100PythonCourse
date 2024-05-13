@@ -24,7 +24,7 @@ app = Flask(__name__)
 class Base(DeclarativeBase):
     pass
 # Connect to Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/lovely/Documents/Udemy/100_DaysOfProgramming/066_Day/day-66-starting-files-cafe-api/instance/cafes.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -42,6 +42,11 @@ class Cafe(db.Model):
     has_sockets: Mapped[bool] = mapped_column(Boolean, nullable=False)
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     coffee_price: Mapped[str] = mapped_column(String(250), nullable=True)
+
+    def to_dict(self):
+        return {column.name : getattr(self, column.name) for column in self.__table__.columns}
+    
+   
 
 
 with app.app_context():
@@ -65,16 +70,24 @@ def random_GET_method():
     # print(get_cafe.name)
     #__
 
-    result = db.session.execute(select(Cafe))
-    all_cafes = result.scalars().all()
+    query = db.session.execute(select(Cafe))
+    all_cafes = query.scalars().all()
     random_cafe = random.choice(all_cafes)
+    return jsonify(cafe = random_cafe.to_dict())
     
+@app.route("/all", methods=["GET"])
+def all_GET_method():
+    query = db.session.execute(select(Cafe))
+    all_cafes = query.scalars().all()
+    cafes_data = [cafe.to_dict() for cafe in all_cafes]
+    return jsonify(cafes=cafes_data)
 
-    
+@app.route("/search?<int:loc>", methods=["GET"])
+def search_GET_method():
 
     
 # HTTP POST - Create Record
-@app.route("/ramdom", methods=["POST"])
+@app.route("/random", methods=["POST"])
 def random_POST_method():
     pass
 # HTTP PUT/PATCH - Update Record
