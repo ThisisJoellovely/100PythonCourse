@@ -28,6 +28,7 @@ load_dotenv("/Users/lovely/Documents/Udemy/SECRET_API_KEYS/064_Day/.env")
 
 # Constants
 THE_MOVIES_DATABASE_API_KEY = os.getenv("TOP_10_MOVIES_API_KEY")
+MOVIE_DB_INFO_URL = "https://api.themoviedb.org/3/movie"
 THE_MOVIES_DATABASE_URL = "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1"
 MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
@@ -61,11 +62,6 @@ class Movie(db.Model):
 with app.app_context():
     """This creates the desired Movies table listed above """
     db.create_all()
-
-def top_10_list():
-    """This Creates a Scalar Object in order of the ID primiary Key"""
-    movies = db.session.execute(select(Movie).order_by(Movie.id)).scalars()
-    return movies
     
 # Class Functions
 class EditForm(FlaskForm):
@@ -95,7 +91,7 @@ class TopMoviesDataBase(requests.Session):
             data = response.json()
             new_movie = Movie(
                  title= data["title"],
-                 year= data["release_data"].split("-")[0],
+                 year= data["release_date"].split("-")[0],
                  img_url = f"{MOVIE_DB_IMAGE_URL}{data['poster_path']}",
                  description= data["overview"]
             )
@@ -103,13 +99,7 @@ class TopMoviesDataBase(requests.Session):
             db.session.commit()
             return new_movie
             
-            
-            
-            
-
-
-
-
+    
 # with app.app_context(): 
 #     first_movie = Movie(
 #     title="Phone Booth",
@@ -135,12 +125,15 @@ class TopMoviesDataBase(requests.Session):
 #     print("Process Completed")
 
 
-
-
 @app.route("/")
 def home():
-    movies = top_10_list()
-    return render_template("index.html", data=movies)
+    result = db.session.execute(select(Movie).order_by(Movie.rating))
+    all_movies = result.scalars().all()
+    for i in range(len(all_movies)):
+         all_movies[i].ranking = len(all_movies) - i
+         db.session.commit()
+         
+    return render_template("index.html", data=all_movies)
 
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
@@ -179,16 +172,17 @@ def add_movies():
 
 @app.route("/find")
 def find_movie():
-        movieTMDB = request.args.get("id")  
+        movieTMDB = request.args.get("id") 
+        print(movieTMDB) 
         if  movieTMDB:
             top_movies_database = TopMoviesDataBase()
             the_movies_database_parameter = {
             "api_key": THE_MOVIES_DATABASE_API_KEY,
             "language" : "en-US"
             }
-            movieTMDB_url  = f"{THE_MOVIES_DATABASE_URL}/{movieTMDB}"
-            movieTMDB_return = top_movies_database.makeRequestFindCall(url=movieTMDB_url,the_movies_database_parameter=the_movies_database_parameter)
-            return redirect(url_for("edit", id=movieTMDB_return.id))
+            movieTMDB_url  = f"{MOVIE_DB_INFO_URL}/{movieTMDB}"
+            movieTMDB_movie = top_movies_database.makeRequestFindCall(url=movieTMDB_url,the_movies_database_parameter=the_movies_database_parameter)
+            return redirect(url_for("edit", id=movieTMDB_movie.id))
             
 
 
