@@ -21,3 +21,4 @@ Learned So Far
 18. Jinja Sytax and url get request with FLASK framework 
 19. Bootstrap Basics with Bootstrap FLASK development
 20. SQL Lite with FLASK development
+21. 4 Principles of web design Theory (1. Color Theory, 2. Typography, 3. User Interface, 4. User Experience)
