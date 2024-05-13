@@ -32,9 +32,6 @@ MOVIE_DB_INFO_URL = "https://api.themoviedb.org/3/movie"
 THE_MOVIES_DATABASE_URL = "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1"
 MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
-
-
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://///Users/lovely/Documents/Udemy/100_DaysOfProgramming/064_Day/day-64-starting-files-top-movies/movies.db"
