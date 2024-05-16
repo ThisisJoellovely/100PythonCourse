@@ -79,21 +79,54 @@ def random_GET_method():
 def all_GET_method():
     query = db.session.execute(select(Cafe))
     all_cafes = query.scalars().all()
-    cafes_data = [cafe.to_dict() for cafe in all_cafes]
-    return jsonify(cafes=cafes_data)
+    all_cafes_data = [cafe.to_dict() for cafe in all_cafes]
+    return jsonify(cafes=all_cafes_data)
 
-@app.route("/search?<int:loc>", methods=["GET"])
+@app.route("/search", methods=["GET"])
 def search_GET_method():
-
+    location = request.args.get('loc')
+    query = db.session.execute(select(Cafe).where(Cafe.location == location))
+    all_cafes = query.scalars().all()
+    if len(all_cafes) > 0:
+        all_cafes_data = [cafe.to_dict() for cafe in all_cafes]
+        search_result = jsonify(Cafe = all_cafes_data)
+    else:
+        all_cafes_data = {"Error" : { "Not Found" : "Sorry, we don't have a cafe at that location."}  }
+        search_result = jsonify(all_cafes_data)
+    return search_result
     
 # HTTP POST - Create Record
-@app.route("/random", methods=["POST"])
-def random_POST_method():
-    pass
+@app.route("/add", methods=["POST"])
+def add_POST_method():
+    new_Cafe = Cafe(
+    name = request.args.get('name'),
+    map_url = request.args.get('map_url'),
+    img_url = request.args.get('img_url'),
+    location = request.args.get('location'),
+    seats = request.args.get('seats'),
+    has_toilet = request.args.get('has_toilet'),
+    has_wifi = request.args.get('has_wifi'),
+    has_sockets = request.args.get('has_sockets'),
+    can_take_calls = request.args.get('can_take_calls'),
+    coffee_price = request.args.get('coffee_price')
+    )
+    db.session.add(new_Cafe)
+    db.session.commit()
+    return jsonify(response = {"sucesss" : "sucessfully added a new cafe." })
+
 # HTTP PUT/PATCH - Update Record
-@app.route("/random", methods=["PUT", "PATCH"])
-def radom_PUT_PATCH_method():
-    pass
+@app.route("/update-price/<int:cafe_id>", methods=["PATCH"])
+def update_price_PATCH_method(cafe_id):
+    new_price = request.args.get("new_price")
+    cafe = db.get_or_404(Cafe, cafe_id)
+    if cafe: 
+        cafe.coffee_price = new_price
+        db.session.commit()
+        return jsonify({"success" : "sucessfully updated the coffee price"})
+    else:
+        return jsonify({"error" : { "Not Found" :  "Sorry a cafe with that ID in the database wasn't found!"}})
+
+
 # HTTP DELETE - Delete Record
 @app.route("/random", methods=["DELETE"])
 def random_DELETE_method():
