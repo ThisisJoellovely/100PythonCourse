@@ -1,19 +1,15 @@
-{% block content %} {% include "header.html" %}
+{% block content %}
+{% include "header.html" %}
 
 <!-- Page Header -->
-<header
-  class="masthead"
-  style="background-image: url('../static/assets/img/edit-bg.jpg')"
->
+<header class="masthead" style="background-image: url('../static/assets/img/edit-bg.jpg')">
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="page-heading">
-          <!-- TODO: Show a different h1 if editing existing post -->
-          <h1>New Post</h1>
-          <span class="subheading"
-            >You're going to make a great blog post!</span
-          >
+          <!-- Show a different h1 if editing existing post -->
+          <h1>{{ 'Edit Post' if is_editing else 'New Post' }}</h1>
+          <span class="subheading">You're going to make a great blog post!</span>
         </div>
       </div>
     </div>
@@ -24,9 +20,46 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <!-- TODO:-Add CKEditor and render the form here -->
+        <form method="POST" action="{{ url_for('new_post') if not is_editing else url_for('edit_post', post_id=form.id.data) }}" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+
+          <div class="form-group">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            {{ form.subtitle.label(class="form-label") }}
+            {{ form.subtitle(class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            {{ form.body.label(class="form-label") }}
+            {{ form.body(class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            {{ form.img_url.label(class="form-label") }}
+            {{ form.img_url(class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            {{ form.author.label(class="form-label") }}
+            {{ form.author(class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+          </div>
+        </form>
+
+        <!-- Load CKEditor -->
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='body') }}
       </div>
     </div>
   </div>
 </main>
-{% include "footer.html" %} {% endblock %}
+
+{% include "footer.html" %}
+{% endblock %}
