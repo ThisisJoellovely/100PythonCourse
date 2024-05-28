@@ -1,0 +1,1 @@
+So in this lesson basic information about version control, remote respositories, and the command line. Then, Introduced information about .gitgnore.txt and graphical repersentations of 4 step process of commiting to a online repositories. Then, Uses cases of branching, Cloniing and Forking. 
