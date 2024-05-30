@@ -24,3 +24,7 @@ Learned So Far
 21. 4 Principles of web design Theory (1. Color Theory, 2. Typography, 3. User Interface, 4. User Experience)
 22. RESTful API Development using FLASK framework
 23. Route Checking Authentication (PostMan)
+24. Security & User Authentication with Flask Web-development
+25. Git basic Information (Push-Pull Request, Clone-Fork, Git-ignore, 4 stage process)
+26. Data Science (EDA, Data Cleaning, Pandas)
+27. Graphing using Matplotlib using pploty
