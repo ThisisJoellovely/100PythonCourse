@@ -27,5 +27,5 @@ Learned So Far
 24. Security & User Authentication with Flask Web-development
 25. Git basic Information (Push-Pull Request, Clone-Fork, Git-ignore, Branching, 4 stage process)
 26. Data Science (EDA, Data Cleaning, Pandas)
-27. Graphing using Matplotlib using pploty w Jupyter Notebook (Markdown Documentation) and Image manipulation
+27. Graphing using Matplotlib using pploty w Jupyter Notebook (Markdown Documentation) 
 28. 
