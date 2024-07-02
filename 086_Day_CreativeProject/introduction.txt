@@ -1,0 +1,7 @@
+Reflection Time:
+
+This is a place to journal your experience of completing this project. This will help you figure out how to improve as a developer.
+
+Write down how you approached the project. What was hard, what was easy. How might you improve for the next project? What was your biggest learning from today? What would you do differently if you were to tackle this project again?
+
+Tkinter presented challenges in GUI design, event handling, and text manipulation. Designing an intuitive layout using Tkinter's pack and grid managers required careful planning to arrange elements logically. Managing user interactions like timing the typing session accurately and calculating words per minute (WPM) involved precise event handling and string manipulation.
