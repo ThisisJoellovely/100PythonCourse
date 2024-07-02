@@ -1,0 +1,7 @@
+Reflection Time:
+
+This is a place to journal your experience of completing this project. This will help you figure out how to improve as a developer.
+
+Write down how you approached the project. What was hard, what was easy. How might you improve for the next project? What was your biggest learning from today? What would you do differently if you were to tackle this project again?
+
+The primary struggle was ensuring that the game logic was robust and handled all edge cases, such as checking for a win condition across rows, columns, and diagonals, as well as detecting ties. Implementing input validation to handle incorrect or out-of-bounds user input was another challenge that required careful attention to detail.
