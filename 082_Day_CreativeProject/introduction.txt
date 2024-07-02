@@ -1,0 +1,16 @@
+You will use what you've learnt to create a text-based (command line) program that takes any String input and converts it into Morse Code.
+
+You've created plenty of text-based programs in Days 1 -10, so look back at some of those projects if you don't remember what a text-base program looks like.
+
+Wikipedia Entry for Morse Code
+
+The design, functionality, code style is all up to you. You're wearing the big-girl/big-boy pants now. So you get to decide.
+
+Questions for this assignment
+Reflection Time:
+
+This is a place to journal your experience of completing this project. This will help you figure out how to improve as a developer.
+
+Write down how you approached the project. What was hard, what was easy. How might you improve for the next project? What was your biggest learning from today? What would you do differently if you were to tackle this project again?
+
+I began by creating a dictionary to map each character to its corresponding Morse code representation. With this foundation, I developed a function to iterate through the input string, converting each character using the dictionary and handling spaces appropriately.
