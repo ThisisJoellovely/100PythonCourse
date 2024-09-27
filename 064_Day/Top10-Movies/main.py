@@ -24,7 +24,7 @@ pip3 install -r requirements.txt
 
 This will install the packages from requirements.txt for this project.
 '''
-load_dotenv("/Users/lovely/Documents/Udemy/SECRET_API_KEYS/064_Day/.env")
+load_dotenv("/Users/lovely/Documents/100_DaysOfProgramming/064_Day/064_Day:secretkey/.env")
 
 # Constants
 THE_MOVIES_DATABASE_API_KEY = os.getenv("TOP_10_MOVIES_API_KEY")
@@ -34,7 +34,7 @@ MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://///Users/lovely/Documents/Udemy/100_DaysOfProgramming/064_Day/day-64-starting-files-top-movies/movies.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://///Users/lovely/Documents/100_DaysOfProgramming/064_Day/Top10-Movies/movies.db"
 Bootstrap5(app)
 
 # Database Initalization

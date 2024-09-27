@@ -212,3 +212,12 @@
  .release_date {
 	 font-weight: normal;
 }
+.button-container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;  /* Space between buttons */
+	position: absolute;
+	bottom: 20px;  /* Adjust this value to fine-tune the vertical positioning */
+	width: 100%;
+  }
+  
