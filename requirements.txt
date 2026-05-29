@@ -1,0 +1,9 @@
+Flask
+Flask-Bootstrap5
+Flask-SQLAlchemy
+Flask-WTF
+WTForms
+SQLAlchemy
+requests
+python-dotenv
+gunicorn
